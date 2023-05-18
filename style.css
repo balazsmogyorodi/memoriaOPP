@@ -1,0 +1,21 @@
+header {
+text-align: center;
+}
+
+body {
+    background-color: aquamarine;
+}
+
+article {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.kartya {
+    
+}
+
+img {
+    width: 100%;
+}
