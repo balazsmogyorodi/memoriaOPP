@@ -1,5 +1,5 @@
 import lapok from "./adatok.js";
-import JatekTer from "./JatekTer.js";
+import JatekTer from "./jatekTer.js";
 
 const adatlista = lapok();
 

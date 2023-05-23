@@ -1,11 +1,13 @@
 class Kartya {
     #fajlnev;
     #allapot;
-    #blokklt;
+    #blokkolt;
     #divElem;
     #imgElem;
     constructor(fajlNev, szuloElem) {
+        console.log(fajlNev);
         this.#fajlnev = fajlNev;
+
 
         szuloElem.append(`<div class="kartya">
         <img src="" alt="kép"> </div>`);
@@ -14,25 +16,29 @@ class Kartya {
 
         this.#allapot = false;
         this.#setLap();
-
-        this.#divElem.on("click", () =>{
+        this.#blokkolt = false;
+        this.#divElem.on("click", () => {
+            if (this.#blokkolt) {
+                return;
+            }
             this.kattintas();
             this.#kattintasTrigger();
         });
-
- 
-
-
 
     }
 
 
     setAllapot() {
-
+        $(window).on("gameBlocked", () => {
+            this.#blokkolt = true;
+        });
+        $(window).on("gameUnBlocked", () => {
+            this.#blokkolt = false;
+        });
     }
 
     getFajlnev() {
-
+        return this.#fajlnev;
     }
 
     #setLap() {
@@ -48,12 +54,15 @@ class Kartya {
             detail: this,
         });
         window.dispatchEvent(esemeny);
-
     }
 
     kattintas() {
         this.#allapot = !this.#allapot;
         this.#setLap();
+    }
+
+    etluntet() {
+        this.#divElem.css("visibility", "hidden");
     }
 
 
